@@ -3,10 +3,7 @@ import React, { Component } from "react";
 class Welcome extends Component {
 
     render(){
-        const { children } = this.props;
-        return(
-            {children}
-        );
+        return (<h3>Welcome! Sign up or Sign in!</h3>);
     };
 }
 
