@@ -1,16 +1,10 @@
 import React from "react";
 import ReactDOM  from "react-dom";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import App from "./components/App";
-import Welcome from "./components/Welcome";
+import App from "./App";
 
 ReactDOM.render(
-    <BrowserRouter>
-        <App>
-            <Routes>
-                <Route path="/" exact component={Welcome} />
-            </Routes>
-        </App>
-    </BrowserRouter>,
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
     document.querySelector("#root")
 );
