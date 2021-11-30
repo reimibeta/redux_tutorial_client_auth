@@ -2,7 +2,7 @@ import axios from "axios";
 import { AUTH_USER, AUTH_ERROR } from "./types.action";
 
 
-export const signup = (formProps) => (dispatch) => {
+export const signup = (formProps, callback) => (dispatch) => {
     const { username, password } = formProps;
     axios.post('http://d.pcrpallet.com/api/users/user_token/', 
     { 
@@ -11,14 +11,17 @@ export const signup = (formProps) => (dispatch) => {
     }).then(response => {
         console.log(response);
         // console.log(response.data.token.access);
-        // dispatch({ type: AUTH_USER, payload: response.data.token.access });
+        dispatch({ type: AUTH_USER, payload: response.data.token.access });
+        //
+        callback();
     }).catch(error => {
-        console.log(error.response.status);
-        console.log(error.response.data);
-        dispatch({
-            type: AUTH_ERROR,
-            payload: "(" + error.response.status + ")" + 'Signup error!'
-        })
+        console.log(error);
+        // console.log(error.response.status);
+        // console.log(error.response.data);
+        // dispatch({
+        //     type: AUTH_ERROR,
+        //     payload: "(" + error.response.status + ")" + 'Signup error!'
+        // })
     });
     // .catch(e => {
     //     dispatch({

@@ -2,13 +2,25 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import { compose } from "redux";
 import { connect } from "react-redux";
+// import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
+// import { useNavigate } from "react-router-dom";
+import history from "../../history";
 import * as actions from '../../actions';
 
 class Signup extends Component {
 
     onSubmit = (formProps) => {
-        console.log(formProps);
-        this.props.signup(formProps);
+        // console.log(this.props);
+        // const navigate = useNavigate();
+        // const { history } = this.props;
+        this.props.signup(formProps, () => {
+            console.log("push to feature!");
+            history.push("/");
+            
+            // useNavigate().navigate("/feature");
+            // console.log(history);
+        });
     }
 
     render(){
@@ -16,7 +28,7 @@ class Signup extends Component {
         const { handleSubmit } = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.onSubmit)}>
+            <form onSubmit={handleSubmit(this.onSubmit)} history={this.props.history}>
                 <fieldset>
                     <label>Username</label>
                     <Field 
@@ -46,7 +58,7 @@ class Signup extends Component {
 
 
 function mapStateToProps(state){
-    console.log("STATE", state.auth);
+    // console.log("STATE", state.auth);
     return { errorMessage: state.auth.errorMessage };
 }
 
