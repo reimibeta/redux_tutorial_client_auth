@@ -1,5 +1,4 @@
-import actions from "redux-form/lib/actions";
-import { AUTH_USER } from "../actions/types.action";
+import { AUTH_ERROR, AUTH_USER } from "../actions/types.action";
 
 const INITIAL_STATE = {
     authenicated: '',
@@ -7,8 +6,11 @@ const INITIAL_STATE = {
 };
 
 export default function(state = INITIAL_STATE, action){
-    if (actions.type === AUTH_USER){
+    if (action.type === AUTH_USER){
         return { ...state, authenicated: action.payload };
+    }
+    if (action.type === AUTH_ERROR){
+        return { ...state, errorMessage: action.payload };
     }
     return state;
 }
