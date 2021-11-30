@@ -18,10 +18,10 @@ export const signup = (formProps, callback) => (dispatch) => {
         console.log(error);
         // console.log(error.response.status);
         // console.log(error.response.data);
-        // dispatch({
-        //     type: AUTH_ERROR,
-        //     payload: "(" + error.response.status + ")" + 'Signup error!'
-        // })
+        dispatch({
+            type: AUTH_ERROR,
+            payload: "(" + error.response.status + ")" + 'Signup error!'
+        })
     });
     // .catch(e => {
     //     dispatch({

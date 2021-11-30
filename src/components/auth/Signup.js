@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { reduxForm, Field } from "redux-form";
 import { compose } from "redux";
 import { connect } from "react-redux";
 // import { withRouter } from 'react-router-dom';
 // import { withRouter } from 'react-router-dom';
-// import { useNavigate } from "react-router-dom";
-import history from "../../history";
+import { useNavigate } from "react-router-dom";
+// import history from "../../history";
 import * as actions from '../../actions';
 
 class Signup extends Component {
@@ -13,13 +13,17 @@ class Signup extends Component {
     onSubmit = (formProps) => {
         // console.log(this.props);
         // const navigate = useNavigate();
+        // this.props.navigate('/feature');
         // const { history } = this.props;
         this.props.signup(formProps, () => {
             console.log("push to feature!");
-            history.push("/");
+            // useEffect(function persistForm() {
+            // history.push("/feature");
+            // });
             
             // useNavigate().navigate("/feature");
             // console.log(history);
+            this.props.navigate('/feature');
         });
     }
 
@@ -62,7 +66,12 @@ function mapStateToProps(state){
     return { errorMessage: state.auth.errorMessage };
 }
 
+function WithNavigate(stats){
+    let navigate = useNavigate();
+    return <Signup { ...stats } navigate={navigate} />
+}
+
 export default compose(
     connect(mapStateToProps, actions), //state
     reduxForm({ form: 'signup' })
-)(Signup);
+)(WithNavigate);
