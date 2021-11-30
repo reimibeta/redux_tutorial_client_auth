@@ -1,7 +1,7 @@
 import { AUTH_ERROR, AUTH_USER } from "../actions/types.action";
 
 const INITIAL_STATE = {
-    authenicated: '',
+    authenticated: '',
     errorMessage: ''
 };
 
