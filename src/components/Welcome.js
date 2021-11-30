@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { useNavigate } from "react-router-dom";
 import Test from "./Test";
 
 class Welcome extends Component {
@@ -9,7 +10,7 @@ class Welcome extends Component {
                 <h3>Welcome! Sign up or Sign in!</h3>
                 <Test>
                     <button
-                        onClick={() => console.log("test click!")}
+                        onClick={() => this.props.navigate('/feature')}
                     >Test</button>
                 </Test>
             </div>
@@ -17,4 +18,11 @@ class Welcome extends Component {
     };
 }
 
-export default Welcome;
+function WithNavigate(stats){
+    let navigate = useNavigate();  
+    return (
+      <Welcome { ...stats } navigate={navigate} />
+    );
+  }
+
+export default WithNavigate;
