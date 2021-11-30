@@ -2,41 +2,40 @@ import React, { Component, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
-export default ChildComponent => {
+// eslint-disable-next-line import/no-anonymous-default-export
+export default (ChildComponent) => {
   class ComposedComponent extends Component {
 
-    // redirect(){
-    //     useEffect(() => {
-    //             // setTimeout(() => {
-    //             //   setCount((count) => count + 1);
-    //             // }, 1000);
-    //         this.props.navigate('/');
-    //     });
+    // constructor(props){
+    //   super(props);
+    //   this.props.navigate('/');
+    //   // this.props.history('/');
+    //   console.log(this.props);
+    //   // useEffect();
     // }
     // Our component just got rendered
     componentDidMount() {
       this.shouldNavigateAway();
     }
+
     // Our component just got updated
     componentDidUpdate() {
       this.shouldNavigateAway();
     }
+    
     shouldNavigateAway() {
-        
-        if (!this.props.auth) {
-            // useEffect(() => {
-                // setTimeout(() => {
-                //   setCount((count) => count + 1);
-                // }, 1000);
-            this.props.navigate('/');
-            // });
-            console.log("AUTH", "none");
-        } else if (this.props.auth.trim() === "") {
-        //     this.props.navigate('/');
-            console.log("AUTH", "yes");
-        }
+      if (!this.props.auth) {
+          console.log(this.props.navigate);
+          // React.useEffect();
+          // this.props.navigate('/');
+          this.props.navigate('/');
+          console.log("AUTH", "none");
+      } else {
+          console.log("AUTH", "yes");
+      }
     }
-    render() {
+
+    render() {      
       return <ChildComponent {...this.props} />;
     }
   }
@@ -47,9 +46,11 @@ export default ChildComponent => {
   }
 
   function WithNavigate(stats){
-        let navigate = useNavigate();
-        return <ComposedComponent { ...stats } navigate={navigate} />
-    }
+    let navigate = useNavigate();  
+    return (
+      <ComposedComponent { ...stats } navigate={navigate} />
+    );
+  }
 
   return connect(mapStateToProps)(WithNavigate);
 };
