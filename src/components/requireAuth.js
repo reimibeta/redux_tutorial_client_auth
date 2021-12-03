@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
@@ -6,29 +6,29 @@ import { useNavigate } from "react-router-dom";
 export default (ChildComponent) => {
   class ComposedComponent extends Component {
 
-    // constructor(props){
-    //   super(props);
-    //   this.props.navigate('/');
-    //   // this.props.history('/');
-    //   console.log(this.props);
-    //   // useEffect();
-    // }
     // Our component just got rendered
     componentDidMount() {
-      this.shouldNavigateAway();
+      // this.shouldNavigateAway();
+      const { navigate } = this.props;
+      navigate('/');
     }
 
     // Our component just got updated
     componentDidUpdate() {
-      this.shouldNavigateAway();
+      const { navigate } = this.props;
+      navigate('/');
+      // this.shouldNavigateAway();
     }
     
     shouldNavigateAway() {
+      if(!this.props.navigate){
+        console.log("NAV", 'none');
+      } else {
+        console.log("NAV", 'yes');
+        // this.props.navigate('/');
+      }
       if (!this.props.auth) {
-          console.log(this.props.navigate);
-          // React.useEffect();
           // this.props.navigate('/');
-          this.props.navigate('/');
           console.log("AUTH", "none");
       } else {
           console.log("AUTH", "yes");
