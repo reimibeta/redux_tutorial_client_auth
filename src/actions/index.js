@@ -12,6 +12,8 @@ export const signup = (formProps, callback) => (dispatch) => {
         console.log(response);
         // console.log(response.data.token.access);
         dispatch({ type: AUTH_USER, payload: response.data.token.access });
+        localStorage.setItem('token_access', response.data.token.access);
+        localStorage.setItem('token_refresh', response.data.token.refresh);
         //
         callback();
     }).catch(error => {
@@ -33,4 +35,15 @@ export const signup = (formProps, callback) => (dispatch) => {
     // const response = axios.post('http://d.pcrpallet.com/api/users/user_token/', { name: username, password: password });
     // console.log(response);
     // dispatch({ type: AUTH_USER, payload: response.token.access });
+};
+
+
+export const signout = () => {
+    localStorage.removeItem("token_access");
+    localStorage.removeItem("token_refresh");
+
+    return {
+        type: AUTH_USER,
+        payload: ''
+    };
 };

@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Components from "./components";
-import routes from "./components/routes";
 import Signup from "./components/auth/Signup";
 import Feature from "./components/Feature";
 import Header from "./components/Header";
 import Welcome from "./components/Welcome";
+import Signout from "./components/auth/Signout";
 
 const App = (props) => {
     // console.log(props.children)
@@ -22,6 +21,7 @@ const App = (props) => {
                     <Route path="/" element={<Welcome />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/feature" element={<Feature />} />
+                    <Route path="/signout" element={<Signout />} />
                 </Routes>
             </BrowserRouter>
             {/* <Components /> */}
