@@ -15,18 +15,16 @@ const App = (props) => {
     // const routing = useRoutes(routes(isLoggedIn));
     return (
         <div>
-            <BrowserRouter basename="/">
+            <Feature />
+            {/* <BrowserRouter basename="/">
                 <Header />
-                {/* {routing} */}
                 <Routes>
                     <Route path="/" element={<Welcome />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/feature" element={<Feature />} />
-                    {/* <Route path="/feature" element={requireAuth(Feature)} /> */}
                     <Route path="/signout" element={<Signout />} />
                 </Routes>
-            </BrowserRouter>
-            {/* <Components /> */}
+            </BrowserRouter> */}
         </div>
     ); 
 }

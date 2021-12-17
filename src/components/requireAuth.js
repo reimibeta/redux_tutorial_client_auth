@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Redirect } from "react-router-dom";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (ChildComponent) => {
@@ -17,11 +17,11 @@ export default (ChildComponent) => {
     }
     
     shouldNavigateAway() {
-      if(!this.props.navigate){
-        console.log("NAV", 'none');
-      } else {
-        console.log("NAV", 'yes');
-      }
+      // if(!this.props.navigate){
+      //   console.log("NAV", 'none');
+      // } else {
+      //   console.log("NAV", 'yes');
+      // }
       if (!this.props.auth) {
           this.props.navigate('/');
           console.log("AUTH", "none");
@@ -30,13 +30,8 @@ export default (ChildComponent) => {
       }
     }
 
-    render() {     
-      // if(!this.props.auth){
-        // return <Redirect to="/signup"
-        // return <Navigate to={<Signup />} />;
-      // } else {
+    render() {   
         return <ChildComponent {...this.props} />;
-      // }
     }
   }
 
