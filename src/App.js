@@ -5,6 +5,7 @@ import Feature from "./components/Feature";
 import Header from "./components/Header";
 import Welcome from "./components/Welcome";
 import Signout from "./components/auth/Signout";
+import requireAuth from "./components/requireAuth";
 
 const App = (props) => {
     // console.log(props.children)
@@ -21,6 +22,7 @@ const App = (props) => {
                     <Route path="/" element={<Welcome />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/feature" element={<Feature />} />
+                    {/* <Route path="/feature" element={requireAuth(Feature)} /> */}
                     <Route path="/signout" element={<Signout />} />
                 </Routes>
             </BrowserRouter>
