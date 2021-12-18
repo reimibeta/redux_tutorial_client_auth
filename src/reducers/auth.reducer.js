@@ -7,7 +7,7 @@ const INITIAL_STATE = {
 
 export default function(state = INITIAL_STATE, action){
     if (action.type === AUTH_USER){
-        return { ...state, authenicated: action.payload };
+        return { ...state, authenticated: action.payload };
     }
     if (action.type === AUTH_ERROR){
         return { ...state, errorMessage: action.payload };
